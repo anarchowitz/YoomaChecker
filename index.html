@@ -10,25 +10,39 @@
         :root {
             --primary: #6c5ce7;
             --primary-dark: #5649c0;
-            --secondary: #a29bfe;
+            --primary-light: #a29bfe;
+            --secondary: #00cec9;
             --dark: #2d3436;
             --light: #f5f6fa;
-            --danger: #d63031;
+            --danger: #ff7675;
             --warning: #fdcb6e;
-            --success: #00b894;
-            --info: #0984e3;
+            --success: #55efc4;
+            --info: #74b9ff;
             
             --bg-color: #f5f6fa;
             --section-bg: white;
             --text-color: #2d3436;
-            --border-color: #e0e0e0;
+            --text-secondary: #636e72;
+            --border-color: #dfe6e9;
+            --shadow-color: rgba(0, 0, 0, 0.1);
         }
         
         .dark-mode {
-            --bg-color: #1e1e2e;
-            --section-bg: #2a2a3a;
-            --text-color: #f5f6fa;
-            --border-color: #3a3a4a;
+            --primary: #8476e7;
+            --primary-dark: #6c5ce7;
+            --primary-light: #9c91f0;
+            --secondary: #00d8d6;
+            --bg-color: #121218;
+            --section-bg: #1e1e2e;
+            --text-color: #e2e2e9;
+            --text-secondary: #b2b2ba;
+            --border-color: #2e2e3e;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            
+            --danger: #ff6b6b;
+            --warning: #ffeaa7;
+            --success: #58f0c0;
+            --info: #7fb7ff;
         }
         
         * {
@@ -42,7 +56,7 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
-            transition: background-color 0.3s, color 0.3s;
+            transition: all 0.3s ease;
         }
         
         .container {
@@ -53,45 +67,76 @@
         }
         
         header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: white;
             padding: 20px 0;
-            border-radius: 10px;
+            border-radius: 12px;
             margin-bottom: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 24px var(--shadow-color);
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .dark-mode header::before {
+            opacity: 0.3;
         }
         
         .header-logo {
             width: 40px;
             height: 40px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+            transition: transform 0.3s ease;
+        }
+        
+        header:hover .header-logo {
+            transform: rotate(15deg);
         }
         
         h1 {
             font-size: 2.5rem;
             margin-bottom: 0;
             font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
         .section {
             background: var(--section-bg);
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 25px;
             margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            transition: background-color 0.3s;
+            box-shadow: 0 4px 20px var(--shadow-color);
+            transition: all 0.3s ease;
             border: 1px solid var(--border-color);
+            position: relative;
+        }
+        
+        .section:hover {
+            box-shadow: 0 8px 30px var(--shadow-color);
+            transform: translateY(-2px);
         }
         
         h2 {
             color: var(--primary);
             margin-bottom: 15px;
             font-size: 1.8rem;
-            border-bottom: 2px solid var(--secondary);
+            border-bottom: 2px solid var(--primary-light);
             padding-bottom: 10px;
             display: flex;
             align-items: center;
@@ -116,7 +161,7 @@
             color: var(--primary);
         }
         
-        ul {
+        ul, ol {
             list-style-type: none;
         }
         
@@ -124,6 +169,7 @@
             padding: 8px 0;
             position: relative;
             padding-left: 25px;
+            color: var(--text-secondary);
         }
         
         li:before {
@@ -132,6 +178,7 @@
             font-weight: bold;
             position: absolute;
             left: 10px;
+            transition: all 0.2s ease;
         }
         
         .forbidden li:before {
@@ -150,7 +197,7 @@
         
         .signatures {
             background: var(--bg-color);
-            border-radius: 5px;
+            border-radius: 8px;
             padding: 15px;
             font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
             white-space: pre-wrap;
@@ -161,6 +208,12 @@
             overflow-x: auto;
             font-size: 0.9rem;
             line-height: 1.5;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .signatures:hover {
+            border-left-color: var(--primary-light);
         }
         
         .copy-btn {
@@ -171,20 +224,22 @@
             border: none;
             outline: none;
             color: var(--primary);
-            padding: 5px 10px;
-            border-radius: 5px;
+            padding: 5px 12px;
+            border-radius: 6px;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 6px;
             font-size: 14px;
             z-index: 2;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(5px);
         }
         
         .copy-btn:hover {
             background: rgba(108, 92, 231, 0.2);
             color: var(--primary-dark);
+            transform: translateY(-1px);
         }
         
         .program-info {
@@ -195,8 +250,14 @@
             gap: 15px;
             background: rgba(108, 92, 231, 0.05);
             padding: 15px;
-            border-radius: 8px;
+            border-radius: 10px;
             border-left: 3px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .program-info:hover {
+            background: rgba(108, 92, 231, 0.1);
+            transform: translateX(3px);
         }
         
         .program-icon {
@@ -209,12 +270,26 @@
             justify-content: center;
             background: rgba(108, 92, 231, 0.1);
             border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .program-info:hover .program-icon {
+            transform: rotate(15deg);
+            background: rgba(108, 92, 231, 0.2);
         }
         
         .program-name {
             font-weight: bold;
             color: var(--primary);
             font-size: 1.2rem;
+        }
+        
+        .badge {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 8px;
         }
         
         .badge-danger {
@@ -224,52 +299,47 @@
         
         .badge-success {
             background-color: var(--success);
-            color: white;
+            color: var(--dark);
         }
         
         footer {
             text-align: center;
             margin-top: 50px;
             padding: 20px;
-            color: var(--text-color);
+            color: var(--text-secondary);
             font-size: 0.9rem;
-            opacity: 0.8;
         }
         
         .theme-toggle {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(108, 92, 231, 0.2);
             border: none;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 5px;
+            color: var(--primary);
+            padding: 10px 15px;
+            border-radius: 8px;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 5px;
-            transition: all 0.2s;
+            gap: 8px;
+            transition: all 0.3s ease;
             z-index: 100;
-        }
-        
-        .dark-mode .theme-toggle {
-            color: var(--dark);
-            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px var(--shadow-color);
         }
         
         .theme-toggle:hover {
-            background: rgba(0, 0, 0, 0.3);
-        }
-        
-        .dark-mode .theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(108, 92, 231, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow-color);
         }
         
         .tabs {
             display: flex;
             margin-bottom: 20px;
             border-bottom: 1px solid var(--border-color);
+            gap: 5px;
         }
         
         .tab {
@@ -277,20 +347,19 @@
             cursor: pointer;
             background: transparent;
             border: none;
-            color: var(--text-color);
+            color: var(--text-secondary);
             font-weight: 600;
             position: relative;
-            transition: all 0.2s;
-            opacity: 0.7;
+            transition: all 0.3s ease;
+            border-radius: 8px 8px 0 0;
         }
         
         .tab:hover {
-            opacity: 1;
             color: var(--primary);
+            background: rgba(108, 92, 231, 0.1);
         }
         
         .tab.active {
-            opacity: 1;
             color: var(--primary);
         }
         
@@ -302,10 +371,12 @@
             width: 100%;
             height: 3px;
             background: var(--primary);
+            border-radius: 3px 3px 0 0;
         }
         
         .tab-content {
             display: none;
+            animation: fadeIn 0.4s ease-out forwards;
         }
         
         .tab-content.active {
@@ -328,13 +399,14 @@
         .faq-qna p {
             margin-bottom: 15px;
             padding-left: 28px;
-            opacity: 0.9;
+            color: var(--text-secondary);
         }
         
         a {
             color: var(--primary);
             text-decoration: none;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
+            font-weight: 500;
         }
         
         a:hover {
@@ -344,13 +416,18 @@
         
         .alert {
             padding: 15px;
-            border-radius: 8px;
+            border-radius: 10px;
             margin-bottom: 20px;
             display: flex;
             align-items: flex-start;
             gap: 12px;
             background: rgba(253, 203, 110, 0.15);
             border-left: 4px solid var(--warning);
+            transition: all 0.3s ease;
+        }
+        
+        .alert:hover {
+            transform: translateX(5px);
         }
         
         .alert i {
@@ -360,7 +437,7 @@
         }
         
         .alert-danger {
-            background: rgba(214, 48, 49, 0.1);
+            background: rgba(255, 107, 107, 0.1);
             border-left-color: var(--danger);
         }
         
@@ -369,7 +446,7 @@
         }
         
         .alert-success {
-            background: rgba(0, 184, 148, 0.1);
+            background: rgba(85, 239, 196, 0.1);
             border-left-color: var(--success);
         }
         
@@ -378,7 +455,7 @@
         }
         
         .alert-info {
-            background: rgba(9, 132, 227, 0.1);
+            background: rgba(116, 185, 255, 0.1);
             border-left-color: var(--info);
         }
         
@@ -386,13 +463,108 @@
             color: var(--info);
         }
         
+        .glow-effect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: radial-gradient(circle at center, rgba(108, 92, 231, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .section:hover .glow-effect {
+            opacity: 1;
+        }
+        
+        .download-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            background: var(--section-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            margin: 20px 0;
+        }
+        
+        .download-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px var(--shadow-color);
+        }
+        
+        .download-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+            text-decoration: none;
+        }
+        
+        .file-info {
+            background: rgba(108, 92, 231, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            width: 100%;
+            text-align: left;
+        }
+        
+        .file-info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
+        
+        .file-info-item:last-child {
+            border-bottom: none;
+        }
+        
+        .verification-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(85, 239, 196, 0.1);
+            color: var(--success);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 15px;
+        }
+        
         @media (max-width: 768px) {
             .theme-toggle {
                 top: 15px;
                 right: 15px;
                 font-size: 0.8rem;
-                padding: 5px 10px;
+                padding: 8px 12px;
             }
+            
             .container {
                 padding: 15px;
             }
@@ -416,16 +588,13 @@
                 padding: 20px 15px;
             }
             
-            .theme-toggle {
-                top: 15px;
-                right: 15px;
-                font-size: 0.8rem;
-                padding: 5px 10px;
-            }
-            
             .tab {
                 padding: 10px 15px;
                 font-size: 0.9rem;
+            }
+            
+            .download-card {
+                padding: 20px;
             }
         }
         
@@ -434,17 +603,28 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
         .section {
             animation: fadeIn 0.3s ease-out forwards;
         }
         
         .section:nth-child(2) { animation-delay: 0.1s; }
         .section:nth-child(3) { animation-delay: 0.2s; }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
     </style>
 </head>
 <body>
     <button class="theme-toggle" id="themeToggle">
-            <i class="fas fa-moon"></i>
+        <i class="fas fa-moon"></i>
+        <span>Тема</span>
     </button>
     <div class="container">
         <header>
@@ -459,10 +639,14 @@
             <button class="tab" data-tab="faq">
                 <i class="fas fa-question-circle"></i> FAQ
             </button>
+            <button class="tab" data-tab="download">
+                <i class="fas fa-download"></i> Скачать
+            </button>
         </div>
         
         <div class="tab-content active" id="signatures">
             <section class="section">
+                <div class="glow-effect"></div>
                 <h2><i class="fas fa-ban"></i> Реестр запрещенных программ</h2>
                 
                 <div class="alert alert-danger">
@@ -499,6 +683,7 @@
             </section>
             
             <section class="section">
+                <div class="glow-effect"></div>
                 <h2><i class="fas fa-search"></i> Сигнатуры для обнаружения</h2>
                 
                 <div class="program-info">
@@ -529,6 +714,7 @@
             </section>
             
             <section class="section">
+                <div class="glow-effect"></div>
                 <div class="program-info">
                     <div class="program-icon">
                         <i class="fas fa-tasks"></i>
@@ -560,6 +746,7 @@
         
         <div class="tab-content" id="faq">
             <section class="section">
+                <div class="glow-effect"></div>
                 <h2><i class="fas fa-question-circle"></i> Часто задаваемые вопросы</h2>
                 
                 <div class="alert alert-info">
@@ -605,15 +792,78 @@
             </section>
         </div>
         
+        <div class="tab-content" id="download">
+            <section class="section">
+                <div class="glow-effect"></div>
+                <h2><i class="fas fa-download"></i> Скачать YoomaChecker</h2>
+                
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <div>
+                        <strong>Важно!</strong> Скачивайте установщик только с официальных источников. Проверяйте хэш-сумму файла после загрузки.
+                    </div>
+                </div>
+                
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fas fa-cloud-download-alt pulse"></i>
+                    </div>
+                    <h3>YoomaChecker Installer</h3>
+                    <p>Последняя версия: <strong>v2.5.1</strong></p>
+                    
+                    <div class="file-info">
+                        <div class="file-info-item">
+                            <span>Размер файла:</span>
+                            <span>446 КБ</span>
+                        </div>
+                        <div class="file-info-item">
+                            <span>Дата выпуска:</span>
+                            <span>10.05.2025</span>
+                        </div>
+                        <div class="file-info-item">
+                            <span>Поддержка:</span>
+                            <span>Windows 10/11</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="download-btn" id="downloadBtn">
+                        <i class="fas fa-download"></i>
+                        Скачать установщик
+                    </a>
+                    
+                    <div class="verification-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Проверено на вирусы</span>
+                    </div>
+                </div>
+                
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <div>
+                        <strong>Безопасность:</strong> Перед установкой убедитесь, что скачанный файл имеет следующие характеристики:
+                        <div style="margin-top: 10px; font-family: monospace; background: var(--bg-color); padding: 10px; border-radius: 5px;">
+                            Название: Yooma Installer<br>
+                            Вес: от 400 КБ - до 500КБ
+                            Исходное имя файла: YoomaInstaller.dll
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
         <footer>
             <div style="margin-bottom: 10px;">
                 <img src="https://yooma.su/assets/svg/Logotype.svg" alt="YoomaChecker Logo" style="height: 30px; opacity: 0.8;">
             </div>
             YoomaChecker &copy; 2025 | Все права защищены<br>
             <a href="https://t.me/anarchobio" target="_blank" style="color: var(--primary); margin-top: 5px; display: inline-block;">
-                Разработчик: @anarchobio
+                <i class="fab fa-telegram"></i> Разработчик: @anarchobio
             </a><br>
-            Последнее обновление: 18.04.2025
+            <div style="margin-top: 10px;">
+                <a href="https://github.com/anarchowitz" target="_blank" style="color: var(--text-secondary); margin: 0 5px;"><i class="fab fa-github"></i></a>
+                <a href="https://discord.gg/yooma" target="_blank" style="color: var(--text-secondary); margin: 0 5px;"><i class="fab fa-discord"></i></a>
+            </div>
+            Последнее обновление: 10.05.2025
         </footer>
     </div>
     
@@ -627,17 +877,21 @@
             if (isDark) {
                 icon.classList.remove('fa-moon');
                 icon.classList.add('fa-sun');
+                themeToggle.querySelector('span').textContent = 'Светлая';
             } else {
                 icon.classList.remove('fa-sun');
                 icon.classList.add('fa-moon');
+                themeToggle.querySelector('span').textContent = 'Тёмная';
             }
         });
         
-        if (localStorage.getItem('darkMode') === 'true') {
+        if (localStorage.getItem('darkMode') === 'true' || 
+            (localStorage.getItem('darkMode') === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.body.classList.add('dark-mode');
             const icon = themeToggle.querySelector('i');
             icon.classList.remove('fa-moon');
             icon.classList.add('fa-sun');
+            themeToggle.querySelector('span').textContent = 'Светлая';
         }
         
         const tabs = document.querySelectorAll('.tab');
@@ -648,6 +902,7 @@
                 tab.classList.add('active');
                 const tabId = tab.getAttribute('data-tab');
                 document.getElementById(tabId).classList.add('active');
+                document.getElementById(tabId).scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
@@ -662,7 +917,7 @@
                     
                     this.querySelector('i').className = 'fas fa-check';
                     this.querySelector('span').textContent = 'Скопировано!';
-                    this.style.backgroundColor = 'rgba(0, 184, 148, 0.2)';
+                    this.style.backgroundColor = 'rgba(85, 239, 196, 0.2)';
                     this.style.color = 'var(--success)';
                     
                     setTimeout(() => {
@@ -674,6 +929,76 @@
                 }).catch(err => {
                     console.error('Ошибка при копировании: ', err);
                 });
+            });
+        });
+        
+        document.getElementById('downloadBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const btn = this;
+            const originalHtml = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Получение ссылки...';
+            btn.style.background = 'linear-gradient(135deg, var(--warning), var(--danger))';
+            
+            fetch('https://anarchowitz.github.io/YoomaChecker/dwlink.html')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Не удалось получить ссылку');
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const downloadLink = doc.querySelector('a')?.href;
+                    
+                    if (!downloadLink) {
+                        throw new Error('Ссылка не найдена');
+                    }
+                    
+                    btn.innerHTML = '<i class="fas fa-download"></i> Скачивание...';
+                    btn.style.background = 'linear-gradient(135deg, var(--info), var(--primary))';
+                    
+                    const a = document.createElement('a');
+                    a.href = downloadLink;
+                    a.download = 'YoomaChecker_Installer.exe';
+                    a.style.display = 'none';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    
+                    btn.innerHTML = '<i class="fas fa-check"></i> Скачивание начато!';
+                    btn.style.background = 'linear-gradient(135deg, var(--success), var(--secondary))';
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = originalHtml;
+                        btn.style.background = 'linear-gradient(135deg, var(--primary), var(--primary-dark))';
+                    }, 3000);
+                })
+                .catch(error => {
+                    console.error('Ошибка при скачивании:', error);
+                    btn.innerHTML = '<i class="fas fa-times"></i> Ошибка!';
+                    btn.style.background = 'linear-gradient(135deg, var(--danger), var(--danger-dark))';
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = originalHtml;
+                        btn.style.background = 'linear-gradient(135deg, var(--primary), var(--primary-dark))';
+                    }, 3000);
+                    
+                    alert('Не удалось начать скачивание. Пожалуйста, попробуйте позже или свяжитесь с поддержкой.');
+                });
+        });
+
+        document.querySelectorAll('.section, .download-card, .program-info').forEach(el => {
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const glow = el.querySelector('.glow-effect');
+                if (glow) {
+                    glow.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(108, 92, 231, 0.2) 0%, transparent 70%)`;
+                }
             });
         });
     </script>
