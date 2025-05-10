@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YoomaChecker | Сигнатуры</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --danger: #d63031;
+            --warning: #fdcb6e;
+            --success: #00b894;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 0;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .last-update {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: var(--dark);
+            margin: 20px 0 10px;
+            font-size: 1.3rem;
+        }
+        
+        ul {
+            list-style-type: none;
+        }
+        
+        li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        li:before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 10px;
+        }
+        
+        .forbidden li:before {
+            color: var(--danger);
+        }
+        
+        .allowed li:before {
+            color: var(--success);
+        }
+        
+        .signatures {
+            background: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-break: break-all;
+            margin: 15px 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .program-info {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        
+        .program-name {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .badge-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .badge-warning {
+            background-color: var(--warning);
+            color: var(--dark);
+        }
+        
+        .badge-success {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>YoomaChecker | Сигнатуры</h1>
+            <div class="last-update">Последнее обновление: 18.04.2025</div>
+        </header>
+        
+        <section class="section">
+            <h2>Реестр запрещенных программ</h2>
+            <p>Реестр запрещенных программ (читы), включая, но не ограничиваясь:</p>
+            
+            <div class="forbidden">
+                <ul>
+                    <li>SharkHack, Neverlose, Spurdo, Midnight, Xone, Fatality, expanderа.win, EzSoft</li>
+                    <li>ahk-cs2 (только для CS2, запрещено и универсальный триггербот/бхоп)</li>
+                    <li>Triggerbot AHK, Luno, Spirthack, enigma-tech, en1gma, Aimstar, Tkazer, Nixware, ErScripts</li>
+                    <li>ExLoader, MVPLoader, ExtrimHack, Interium, Espd2x</li>
+                    <li>Любые другие читы, дающие нечестное преимущество</li>
+                </ul>
+            </div>
+            
+            <h3>Исключения:</h3>
+            <div class="allowed">
+                <ul>
+                    <li>Обычные AHK-скрипты разрешены (кроме пиксельного триггербота)</li>
+                    <li>Скинченджеры разрешены без доп функций (к примеру авто-бхоп)</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>Сигнатуры для обнаружения</h2>
+            
+            <div class="program-info">
+                <span class="program-name">Everything</span>
+                <span>Размеры файлов: <strong>7mb-25mb exe</strong></span>
+            </div>
+            
+            <h3>Сигнатуры (case-insensitive):</h3>
+            <div class="signatures">
+XONE|ErScript|ExLoader|Spurdo|Chieftain|INTERIUM|midnight|xone|interium|espd2x|avira|exloader|wallhack|skinchanger|extrimhack|primordial|skeet|gamesense|neverlose|injector|nixware|autohotkey|hack|cheat|чит|Aimware|crack|Vredux|NeverKernel|MASON|predator|Aquila|Luno|Fecurity|Aimstar|TKazer|NAIM|Pellix|PussyCat|Macros|AXIOS|Syncware|NOVA|OneMacro|SoftHub|MVPLoader|Detorus|VRedux|ProExt|Sapphire|InterWebz|Spirthack|.amc|imgui.ini|HAXCS|Plaguecheat|vapehook|en1gma|enigma|smurfwrecker|Iniuia|memesense|Yeahnot|LeagueMode|Legendware|EGHack|HAUNTEDPROJECT|externalcrack|RAGER9|RAGER8|.ahk|WinX|PhoenixHack|OBR|OneByteRadar|EZinjector|Reborn|OneByteWall*Hack|Osiris|Multihack|Breakthrough|RHcheats|Aurora|SpirtHack|Fatality|OneTap|ev0lve|Bhop|BunnyHop|Avira|SharkHack|sharkhack
+            </div>
+            <div class="last-update">Последнее обновление: 18.04.2025</div>
+        </section>
+        
+        <section class="section">
+            <div class="program-info">
+                <span class="program-name">System Informer</span>
+            </div>
+            
+            <h3>Процесс: explorer.exe</h3>
+            <p>Метод: Regex (case-insensitive)</p>
+            <h4>Сигнатуры:</h4>
+            <div class="signatures">
+onetap|midnight.im|ErScript|Chieftain|Spurdo|freeqn|nixware|neverlose|exloader|aimbot|bunnyhop|wallhack|autostrafe|triggerbot|gamesense|rageaimbot|exloader|aimbotting|edgejump|ragebot|legibot|skinchanger|aimmy|spectatorlist|naimfree|aimassist|warware|w1nner|plaguecheat|osiris|ezcheats|aimstar|tkazer|sharkhack
+            </div>
+            
+            <h3>Процессы: Browser.exe, Chrome.exe, msedge.exe, opera.exe и др.</h3>
+            <p>Метод: Regex (case-insensitive)</p>
+            <h4>Домены:</h4>
+            <div class="signatures">
+doomxtf.com|axios-macro.com|midnight.im|xone.fun|blast.hk|yougame.biz|jestkii|wh-satano|cheatcsgo|interium|r8cheats|ezcheats|exloader|cs-elect.ru|extrimhack|neverlose.cc|gamesense|legendware|nixware|phoenix-hack|rf-cheats|anyx.gg|hackvshack.net|ezyhack|unknowncheats|cheater.ninja|insanitycheats.com|cheater.fun|100cheats.ru|undetek.com|cs-elect.ru|cheater.world|zelenka.guru/tags/cs2-cheat|procheats|hells-hack.com|clickhack.ru|procheat.pro|cheatermad.com|420cheats.com|cs2-cheat|wh-satano.ru|up-game.pro|millex.xyz|boohack.ru|procheat.pro|elitehacks.ru|cheatcsgo.ru|box-cheat.ru|novamacro|predator.systems|mvploader|securecheats|darkaim|invision.gg|elitepvpers.com|privatecheatz|cosmocheats|skycheats.com|capefactory.io|rockpapershotgun.com|en1gma.tech|lunocs2.ru|abyss.gg|ezcs.ru|kitchenhack.ru|ezyhack.ru|extrimhack.ru|dhjcheats.com|aimcop.ru|novamacro.xyz|promacro.ru|promacro.store|botmek.ru|topmacro.ru|ggmacro.ru|aimstar|myhacks.store|interium.ooo|nixware.cc|arayas-cheats.com|x-cheats.com|r8cheats.guru|gamebreaker.ru|cheatside.ru|shadowcheat.pro|h4ck.shop|select-place.ru|oplata.info|Spurdo.me|Chieftain
+            </div>
+            <div class="last-update">Последнее обновление: 18.04.2025</div>
+        </section>
+        
+        <footer>
+            YoomaChecker &copy; 2025 | Все права защищены
+        </footer>
+    </div>
+</body>
+</html>
