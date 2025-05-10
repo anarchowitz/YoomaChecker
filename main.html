@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YoomaChecker | Сигнатуры</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         :root {
             --primary: #6c5ce7;
@@ -122,6 +122,8 @@
         
         .signatures-container {
             position: relative;
+            padding-top: 40px;
+            margin: 15px 0;
         }
         
         .signatures {
@@ -139,28 +141,22 @@
         
         .copy-btn {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(108, 92, 231, 0.1);
-            border: none;
-            color: var(--primary);
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 0.8rem;
-            transition: background 0.2s;
+            top: 0;
+            right: 0;
+            z-index: 10;
+            background: var(--primary);
+            color: white !important;
+            padding: 8px 15px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
         .copy-btn:hover {
-            background: rgba(108, 92, 231, 0.2);
+            background: var(--secondary);
         }
         
-        .copy-btn.copied {
-            background: var(--success);
-            color: white;
+        .copy-btn .fa-copy {
+            color: inherit !important;
         }
         
         .program-info {
@@ -383,9 +379,7 @@
                     <button class="copy-btn" data-target="everything-sigs">
                         <i class="far fa-copy"></i> Копировать
                     </button>
-                    <div class="signatures" id="everything-sigs">
-XONE|ErScript|ExLoader|Spurdo|Chieftain|INTERIUM|midnight|xone|interium|espd2x|avira|exloader|wallhack|skinchanger|extrimhack|primordial|skeet|gamesense|neverlose|injector|nixware|autohotkey|hack|cheat|чит|Aimware|crack|Vredux|NeverKernel|MASON|predator|Aquila|Luno|Fecurity|Aimstar|TKazer|NAIM|Pellix|PussyCat|Macros|AXIOS|Syncware|NOVA|OneMacro|SoftHub|MVPLoader|Detorus|VRedux|ProExt|Sapphire|InterWebz|Spirthack|.amc|imgui.ini|HAXCS|Plaguecheat|vapehook|en1gma|enigma|smurfwrecker|Iniuia|memesense|Yeahnot|LeagueMode|Legendware|EGHack|HAUNTEDPROJECT|externalcrack|RAGER9|RAGER8|.ahk|WinX|PhoenixHack|OBR|OneByteRadar|EZinjector|Reborn|OneByteWall*Hack|Osiris|Multihack|Breakthrough|RHcheats|Aurora|SpirtHack|Fatality|OneTap|ev0lve|Bhop|BunnyHop|Avira|SharkHack|sharkhack
-                    </div>
+                    <div class="signatures" id="everything-sigs">XONE|ErScript|ExLoader|Spurdo|Chieftain|INTERIUM|midnight|xone|interium|espd2x|avira|exloader|wallhack|skinchanger|extrimhack|primordial|skeet|gamesense|neverlose|injector|nixware|autohotkey|hack|cheat|чит|Aimware|crack|Vredux|NeverKernel|MASON|predator|Aquila|Luno|Fecurity|Aimstar|TKazer|NAIM|Pellix|PussyCat|Macros|AXIOS|Syncware|NOVA|OneMacro|SoftHub|MVPLoader|Detorus|VRedux|ProExt|Sapphire|InterWebz|Spirthack|.amc|imgui.ini|HAXCS|Plaguecheat|vapehook|en1gma|enigma|smurfwrecker|Iniuia|memesense|Yeahnot|LeagueMode|Legendware|EGHack|HAUNTEDPROJECT|externalcrack|RAGER9|RAGER8|.ahk|WinX|PhoenixHack|OBR|OneByteRadar|EZinjector|Reborn|OneByteWall*Hack|Osiris|Multihack|Breakthrough|RHcheats|Aurora|SpirtHack|Fatality|OneTap|ev0lve|Bhop|BunnyHop|Avira|SharkHack|sharkhack</div>
                 </div>
             </section>
             
@@ -403,9 +397,7 @@ XONE|ErScript|ExLoader|Spurdo|Chieftain|INTERIUM|midnight|xone|interium|espd2x|a
                     <button class="copy-btn" data-target="explorer-sigs">
                         <i class="far fa-copy"></i> Копировать
                     </button>
-                    <div class="signatures" id="explorer-sigs">
-onetap|midnight.im|ErScript|Chieftain|Spurdo|freeqn|nixware|neverlose|exloader|aimbot|bunnyhop|wallhack|autostrafe|triggerbot|gamesense|rageaimbot|exloader|aimbotting|edgejump|ragebot|legibot|skinchanger|aimmy|spectatorlist|naimfree|aimassist|warware|w1nner|plaguecheat|osiris|ezcheats|aimstar|tkazer|sharkhack
-                    </div>
+                    <div class="signatures" id="explorer-sigs">onetap|midnight.im|ErScript|Chieftain|Spurdo|freeqn|nixware|neverlose|exloader|aimbot|bunnyhop|wallhack|autostrafe|triggerbot|gamesense|rageaimbot|exloader|aimbotting|edgejump|ragebot|legibot|skinchanger|aimmy|spectatorlist|naimfree|aimassist|warware|w1nner|plaguecheat|osiris|ezcheats|aimstar|tkazer|sharkhack</div>
                 </div>
                 
                 <h3>Процессы: Browser.exe, Chrome.exe, msedge.exe, opera.exe и др.</h3>
@@ -414,9 +406,7 @@ onetap|midnight.im|ErScript|Chieftain|Spurdo|freeqn|nixware|neverlose|exloader|a
                     <button class="copy-btn" data-target="browser-sigs">
                         <i class="far fa-copy"></i> Копировать
                     </button>
-                    <div class="signatures" id="browser-sigs">
-doomxtf.com|axios-macro.com|midnight.im|xone.fun|blast.hk|yougame.biz|jestkii|wh-satano|cheatcsgo|interium|r8cheats|ezcheats|exloader|cs-elect.ru|extrimhack|neverlose.cc|gamesense|legendware|nixware|phoenix-hack|rf-cheats|anyx.gg|hackvshack.net|ezyhack|unknowncheats|cheater.ninja|insanitycheats.com|cheater.fun|100cheats.ru|undetek.com|cs-elect.ru|cheater.world|zelenka.guru/tags/cs2-cheat|procheats|hells-hack.com|clickhack.ru|procheat.pro|cheatermad.com|420cheats.com|cs2-cheat|wh-satano.ru|up-game.pro|millex.xyz|boohack.ru|procheat.pro|elitehacks.ru|cheatcsgo.ru|box-cheat.ru|novamacro|predator.systems|mvploader|securecheats|darkaim|invision.gg|elitepvpers.com|privatecheatz|cosmocheats|skycheats.com|capefactory.io|rockpapershotgun.com|en1gma.tech|lunocs2.ru|abyss.gg|ezcs.ru|kitchenhack.ru|ezyhack.ru|extrimhack.ru|dhjcheats.com|aimcop.ru|novamacro.xyz|promacro.ru|promacro.store|botmek.ru|topmacro.ru|ggmacro.ru|aimstar|myhacks.store|interium.ooo|nixware.cc|arayas-cheats.com|x-cheats.com|r8cheats.guru|gamebreaker.ru|cheatside.ru|shadowcheat.pro|h4ck.shop|select-place.ru|oplata.info|Spurdo.me|Chieftain
-                    </div>
+                    <div class="signatures" id="browser-sigs">doomxtf.com|axios-macro.com|midnight.im|xone.fun|blast.hk|yougame.biz|jestkii|wh-satano|cheatcsgo|interium|r8cheats|ezcheats|exloader|cs-elect.ru|extrimhack|neverlose.cc|gamesense|legendware|nixware|phoenix-hack|rf-cheats|anyx.gg|hackvshack.net|ezyhack|unknowncheats|cheater.ninja|insanitycheats.com|cheater.fun|100cheats.ru|undetek.com|cs-elect.ru|cheater.world|zelenka.guru/tags/cs2-cheat|procheats|hells-hack.com|clickhack.ru|procheat.pro|cheatermad.com|420cheats.com|cs2-cheat|wh-satano.ru|up-game.pro|millex.xyz|boohack.ru|procheat.pro|elitehacks.ru|cheatcsgo.ru|box-cheat.ru|novamacro|predator.systems|mvploader|securecheats|darkaim|invision.gg|elitepvpers.com|privatecheatz|cosmocheats|skycheats.com|capefactory.io|rockpapershotgun.com|en1gma.tech|lunocs2.ru|abyss.gg|ezcs.ru|kitchenhack.ru|ezyhack.ru|extrimhack.ru|dhjcheats.com|aimcop.ru|novamacro.xyz|promacro.ru|promacro.store|botmek.ru|topmacro.ru|ggmacro.ru|aimstar|myhacks.store|interium.ooo|nixware.cc|arayas-cheats.com|x-cheats.com|r8cheats.guru|gamebreaker.ru|cheatside.ru|shadowcheat.pro|h4ck.shop|select-place.ru|oplata.info|Spurdo.me|Chieftain</div>
                 </div>
             </section>
         </div>
