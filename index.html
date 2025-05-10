@@ -936,57 +936,27 @@
             e.preventDefault();
             const btn = this;
             const originalHtml = btn.innerHTML;
-            
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Получение ссылки...';
-            btn.style.background = 'linear-gradient(135deg, var(--warning), var(--danger))';
-            
-            fetch('https://anarchowitz.github.io/YoomaChecker/dwlink.html')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Не удалось получить ссылку');
-                    }
-                    return response.text();
-                })
-                .then(html => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(html, 'text/html');
-                    const downloadLink = doc.querySelector('a')?.href;
-                    
-                    if (!downloadLink) {
-                        throw new Error('Ссылка не найдена');
-                    }
-                    
-                    btn.innerHTML = '<i class="fas fa-download"></i> Скачивание...';
-                    btn.style.background = 'linear-gradient(135deg, var(--info), var(--primary))';
-                    
-                    const a = document.createElement('a');
-                    a.href = downloadLink;
-                    a.download = 'YoomaChecker_Installer.exe';
-                    a.style.display = 'none';
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    
-                    btn.innerHTML = '<i class="fas fa-check"></i> Скачивание начато!';
-                    btn.style.background = 'linear-gradient(135deg, var(--success), var(--secondary))';
-                    
-                    setTimeout(() => {
-                        btn.innerHTML = originalHtml;
-                        btn.style.background = 'linear-gradient(135deg, var(--primary), var(--primary-dark))';
-                    }, 3000);
-                })
-                .catch(error => {
-                    console.error('Ошибка при скачивании:', error);
-                    btn.innerHTML = '<i class="fas fa-times"></i> Ошибка!';
-                    btn.style.background = 'linear-gradient(135deg, var(--danger), var(--danger-dark))';
-                    
-                    setTimeout(() => {
-                        btn.innerHTML = originalHtml;
-                        btn.style.background = 'linear-gradient(135deg, var(--primary), var(--primary-dark))';
-                    }, 3000);
-                    
-                    alert('Не удалось начать скачивание. Пожалуйста, попробуйте позже или свяжитесь с поддержкой.');
-                });
+            const downloadLink = 'https://github.com/anarchowitz/YoomaChecker/raw/refs/heads/main/YoomaInstaller.exe';
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Начинаем скачивание...';
+            btn.style.background = 'linear-gradient(135deg, var(--info), var(--primary))';
+            btn.disabled = true;
+            const a = document.createElement('a');
+            a.href = downloadLink;
+            a.download = 'YoomaInstaller.exe';
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => {
+                document.body.removeChild(a);
+                btn.innerHTML = '<i class="fas fa-check"></i> Скачивание начато!';
+                btn.style.background = 'linear-gradient(135deg, var(--success), var(--secondary))';
+
+                setTimeout(() => {
+                    btn.innerHTML = originalHtml;
+                    btn.style.background = 'linear-gradient(135deg, var(--primary), var(--primary-dark))';
+                    btn.disabled = false;
+                }, 3000);
+            }, 100);
         });
 
         document.querySelectorAll('.section, .download-card, .program-info').forEach(el => {
