@@ -5,27 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YoomaChecker | Сигнатуры</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #6c5ce7;
+            --primary-dark: #5649c0;
             --secondary: #a29bfe;
             --dark: #2d3436;
             --light: #f5f6fa;
             --danger: #d63031;
             --warning: #fdcb6e;
             --success: #00b894;
+            --info: #0984e3;
             
             --bg-color: #f5f6fa;
             --section-bg: white;
             --text-color: #2d3436;
+            --border-color: #e0e0e0;
         }
         
         .dark-mode {
             --bg-color: #1e1e2e;
             --section-bg: #2a2a3a;
             --text-color: #f5f6fa;
-            --dark: #f5f6fa;
+            --border-color: #3a3a4a;
         }
         
         * {
@@ -46,6 +49,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
         }
         
         header {
@@ -56,20 +60,21 @@
             margin-bottom: 30px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             text-align: center;
-            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .header-logo {
+            width: 40px;
+            height: 40px;
         }
         
         h1 {
             font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .last-update {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            text-align: right;
-            margin-top: 10px;
-            color: var(--secondary);
+            margin-bottom: 0;
+            font-weight: 700;
         }
         
         .section {
@@ -79,6 +84,7 @@
             margin-bottom: 30px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             transition: background-color 0.3s;
+            border: 1px solid var(--border-color);
         }
         
         h2 {
@@ -87,12 +93,27 @@
             font-size: 1.8rem;
             border-bottom: 2px solid var(--secondary);
             padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h2 i {
+            font-size: 1.5rem;
         }
         
         h3 {
             color: var(--text-color);
             margin: 20px 0 10px;
             font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        h3 i {
+            font-size: 1.1rem;
+            color: var(--primary);
         }
         
         ul {
@@ -131,45 +152,39 @@
             background: var(--bg-color);
             border-radius: 5px;
             padding: 15px;
-            font-family: monospace;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
             white-space: pre-wrap;
             word-break: break-all;
             margin: 15px 0;
             border-left: 4px solid var(--primary);
             position: relative;
             overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
         
         .copy-btn {
             position: absolute;
             top: 10px;
             right: 10px;
-            background: none;
-            border: none !important;
-            outline: none !important;
+            background: rgba(108, 92, 231, 0.1);
+            border: none;
+            outline: none;
             color: var(--primary);
-            padding: 0;
+            padding: 5px 10px;
+            border-radius: 5px;
             cursor: pointer;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 6px;
             font-size: 14px;
             z-index: 2;
-            box-shadow: none !important;
+            transition: all 0.2s;
         }
         
         .copy-btn:hover {
-            color: var(--secondary);
-        }
-        
-        .copy-btn .fa-copy {
-            font-size: 16px;
-            margin-top: 2px;
-        }
-        
-        .copy-btn span {
-            line-height: 1.2;
-            padding-top: 1px;
+            background: rgba(108, 92, 231, 0.2);
+            color: var(--primary-dark);
         }
         
         .program-info {
@@ -177,7 +192,11 @@
             align-items: center;
             flex-wrap: wrap;
             margin-bottom: 15px;
-            gap: 10px;
+            gap: 15px;
+            background: rgba(108, 92, 231, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
         }
         
         .program-icon {
@@ -198,23 +217,9 @@
             font-size: 1.2rem;
         }
         
-        .badge {
-            display: inline-block;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin-left: 10px;
-        }
-        
         .badge-danger {
             background-color: var(--danger);
             color: white;
-        }
-        
-        .badge-warning {
-            background-color: var(--warning);
-            color: var(--dark);
         }
         
         .badge-success {
@@ -226,42 +231,66 @@
             text-align: center;
             margin-top: 50px;
             padding: 20px;
-            color: #666;
+            color: var(--text-color);
             font-size: 0.9rem;
+            opacity: 0.8;
         }
         
         .theme-toggle {
-            position: absolute;
+            position: fixed;
             top: 20px;
             right: 20px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.2);
             border: none;
             color: white;
-            padding: 5px 10px;
+            padding: 8px 12px;
             border-radius: 5px;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 5px;
+            transition: all 0.2s;
+            z-index: 100;
+        }
+        
+        .dark-mode .theme-toggle {
+            color: var(--dark);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .dark-mode .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
         
         .tabs {
             display: flex;
             margin-bottom: 20px;
-            border-bottom: 1px solid var(--secondary);
+            border-bottom: 1px solid var(--border-color);
         }
         
         .tab {
-            padding: 10px 20px;
+            padding: 12px 25px;
             cursor: pointer;
             background: transparent;
             border: none;
             color: var(--text-color);
-            font-weight: bold;
+            font-weight: 600;
             position: relative;
+            transition: all 0.2s;
+            opacity: 0.7;
+        }
+        
+        .tab:hover {
+            opacity: 1;
+            color: var(--primary);
         }
         
         .tab.active {
+            opacity: 1;
             color: var(--primary);
         }
         
@@ -283,35 +312,87 @@
             display: block;
         }
         
-        ol {
-            list-style-type: none;
-            padding-left: 25px;
-        }
-        
-        ol li {
-            position: relative;
-            padding-left: 25px;
-        }
-        
-        ol li:before {
-            content: "•";
-            color: var(--primary);
-            font-weight: bold;
-            position: absolute;
-            left: 10px;
-        }
-        
         .faq-qna h4 {
             color: var(--primary);
             margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .faq-qna h4 i {
+            color: var(--info);
+            font-size: 1rem;
         }
         
         .faq-qna p {
             margin-bottom: 15px;
-            padding-left: 20px;
+            padding-left: 28px;
+            opacity: 0.9;
+        }
+        
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        
+        a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: rgba(253, 203, 110, 0.15);
+            border-left: 4px solid var(--warning);
+        }
+        
+        .alert i {
+            font-size: 1.2rem;
+            color: var(--warning);
+            margin-top: 2px;
+        }
+        
+        .alert-danger {
+            background: rgba(214, 48, 49, 0.1);
+            border-left-color: var(--danger);
+        }
+        
+        .alert-danger i {
+            color: var(--danger);
+        }
+        
+        .alert-success {
+            background: rgba(0, 184, 148, 0.1);
+            border-left-color: var(--success);
+        }
+        
+        .alert-success i {
+            color: var(--success);
+        }
+        
+        .alert-info {
+            background: rgba(9, 132, 227, 0.1);
+            border-left-color: var(--info);
+        }
+        
+        .alert-info i {
+            color: var(--info);
         }
         
         @media (max-width: 768px) {
+            .theme-toggle {
+                top: 15px;
+                right: 15px;
+                font-size: 0.8rem;
+                padding: 5px 10px;
+            }
             .container {
                 padding: 15px;
             }
@@ -320,42 +401,77 @@
                 font-size: 2rem;
             }
             
+            header {
+                flex-direction: column;
+                padding: 15px 0;
+                gap: 10px;
+            }
+            
+            .header-logo {
+                width: 32px;
+                height: 32px;
+            }
+            
             .section {
                 padding: 20px 15px;
             }
             
             .theme-toggle {
-                top: 10px;
-                right: 10px;
+                top: 15px;
+                right: 15px;
                 font-size: 0.8rem;
-                padding: 3px 8px;
+                padding: 5px 10px;
             }
             
-            .program-info {
-                flex-direction: column;
-                align-items: flex-start;
+            .tab {
+                padding: 10px 15px;
+                font-size: 0.9rem;
             }
         }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+        
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
     </style>
 </head>
 <body>
+    <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+    </button>
     <div class="container">
         <header>
-            <button class="theme-toggle" id="themeToggle">
-                <span>🌓</span> Тема
-            </button>
+            <img src="https://yooma.su/assets/svg/Logotype.svg" alt="YoomaChecker Logo" class="header-logo">
             <h1>YoomaChecker</h1>
         </header>
-        
+
         <div class="tabs">
-            <button class="tab active" data-tab="signatures">Сигнатуры</button>
-            <button class="tab" data-tab="faq">FAQ</button>
+            <button class="tab active" data-tab="signatures">
+                <i class="fas fa-shield-alt"></i> Сигнатуры
+            </button>
+            <button class="tab" data-tab="faq">
+                <i class="fas fa-question-circle"></i> FAQ
+            </button>
         </div>
         
         <div class="tab-content active" id="signatures">
             <section class="section">
-                <h2>Реестр запрещенных программ</h2>
-                <p>Реестр запрещенных программ (читы), включая, но не ограничиваясь:</p>
+                <h2><i class="fas fa-ban"></i> Реестр запрещенных программ</h2>
+                
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <div>
+                        <strong>Внимание!</strong> Использование этих программ может привести к блокировке вашего аккаунта.
+                        Все перечисленные ниже программы считаются читами и дают нечестное преимущество.
+                    </div>
+                </div>
                 
                 <div class="forbidden">
                     <ul>
@@ -367,7 +483,13 @@
                     </ul>
                 </div>
                 
-                <h3>Исключения:</h3>
+                <div class="alert alert-success">
+                    <i class="fas fa-info-circle"></i>
+                    <div>
+                        <strong>Разрешено:</strong> Следующие программы и скрипты не считаются читами и могут использоваться
+                    </div>
+                </div>
+                
                 <div class="allowed">
                     <ul>
                         <li>Обычные AHK-скрипты разрешены (кроме пиксельного триггербота)</li>
@@ -377,21 +499,30 @@
             </section>
             
             <section class="section">
-                <h2>Сигнатуры для обнаружения</h2>
+                <h2><i class="fas fa-search"></i> Сигнатуры для обнаружения</h2>
                 
                 <div class="program-info">
                     <div class="program-icon">
                         <i class="fas fa-search"></i>
                     </div>
-                    <span class="program-name">Everything</span>
-                    <span>Размеры файлов: <strong>7mb-25mb exe</strong></span>
+                    <div>
+                        <span class="program-name">Everything</span>
+                    </div>
                 </div>
                 
-                <h3>Сигнатуры (case-insensitive):</h3>
+                <h3>Метод 1:</h3>
+                <div class="signatures-container">
+                    <button class="copy-btn" data-target="everything-size-sigs">
+                        <i class="far fa-copy"></i>
+                        <span>Копировать</span>
+                    </button>
+                    <div class="signatures" id="everything-size-sigs">size:7mb-25mb .exe</div>
+                </div>
+                <h3>Метод 2:</h3>
                 <div class="signatures-container">
                     <button class="copy-btn" data-target="everything-sigs">
                         <i class="far fa-copy"></i>
-                        <span>Cкопировать</span>
+                        <span>Копировать</span>
                     </button>
                     <div class="signatures" id="everything-sigs">XONE|ErScript|ExLoader|Spurdo|Chieftain|INTERIUM|midnight|xone|interium|espd2x|avira|exloader|wallhack|skinchanger|extrimhack|primordial|skeet|gamesense|neverlose|injector|nixware|autohotkey|hack|cheat|чит|Aimware|crack|Vredux|NeverKernel|MASON|predator|Aquila|Luno|Fecurity|Aimstar|TKazer|NAIM|Pellix|PussyCat|Macros|AXIOS|Syncware|NOVA|OneMacro|SoftHub|MVPLoader|Detorus|VRedux|ProExt|Sapphire|InterWebz|Spirthack|.amc|imgui.ini|HAXCS|Plaguecheat|vapehook|en1gma|enigma|smurfwrecker|Iniuia|memesense|Yeahnot|LeagueMode|Legendware|EGHack|HAUNTEDPROJECT|externalcrack|RAGER9|RAGER8|.ahk|WinX|PhoenixHack|OBR|OneByteRadar|EZinjector|Reborn|OneByteWall*Hack|Osiris|Multihack|Breakthrough|RHcheats|Aurora|SpirtHack|Fatality|OneTap|ev0lve|Bhop|BunnyHop|Avira|SharkHack|sharkhack</div>
                 </div>
@@ -405,22 +536,22 @@
                     <span class="program-name">System Informer</span>
                 </div>
                 
-                <h3>Процесс: explorer.exe</h3>
+                <h3><i class="fas fa-microchip"></i> Процесс: explorer.exe</h3>
                 <p>Метод: Regex (case-insensitive)</p>
                 <div class="signatures-container">
                     <button class="copy-btn" data-target="explorer-sigs">
                         <i class="far fa-copy"></i>
-                        <span>Cкопировать</span>
+                        <span>Копировать</span>
                     </button>
                     <div class="signatures" id="explorer-sigs">onetap|midnight.im|ErScript|Chieftain|Spurdo|freeqn|nixware|neverlose|exloader|aimbot|bunnyhop|wallhack|autostrafe|triggerbot|gamesense|rageaimbot|exloader|aimbotting|edgejump|ragebot|legibot|skinchanger|aimmy|spectatorlist|naimfree|aimassist|warware|w1nner|plaguecheat|osiris|ezcheats|aimstar|tkazer|sharkhack</div>
                 </div>
                 
-                <h3>Процессы: Browser.exe, Chrome.exe, msedge.exe, opera.exe и др.</h3>
+                <h3><i class="fas fa-globe"></i> Процессы: Browser.exe, Chrome.exe, msedge.exe, opera.exe и др.</h3>
                 <p>Метод: Regex (case-insensitive)</p>
                 <div class="signatures-container">
                     <button class="copy-btn" data-target="browser-sigs">
                         <i class="far fa-copy"></i>
-                        <span>Cкопировать</span>
+                        <span>Копировать</span>
                     </button>
                     <div class="signatures" id="browser-sigs">doomxtf.com|axios-macro.com|midnight.im|xone.fun|blast.hk|yougame.biz|jestkii|wh-satano|cheatcsgo|interium|r8cheats|ezcheats|exloader|cs-elect.ru|extrimhack|neverlose.cc|gamesense|legendware|nixware|phoenix-hack|rf-cheats|anyx.gg|hackvshack.net|ezyhack|unknowncheats|cheater.ninja|insanitycheats.com|cheater.fun|100cheats.ru|undetek.com|cs-elect.ru|cheater.world|zelenka.guru/tags/cs2-cheat|procheats|hells-hack.com|clickhack.ru|procheat.pro|cheatermad.com|420cheats.com|cs2-cheat|wh-satano.ru|up-game.pro|millex.xyz|boohack.ru|procheat.pro|elitehacks.ru|cheatcsgo.ru|box-cheat.ru|novamacro|predator.systems|mvploader|securecheats|darkaim|invision.gg|elitepvpers.com|privatecheatz|cosmocheats|skycheats.com|capefactory.io|rockpapershotgun.com|en1gma.tech|lunocs2.ru|abyss.gg|ezcs.ru|kitchenhack.ru|ezyhack.ru|extrimhack.ru|dhjcheats.com|aimcop.ru|novamacro.xyz|promacro.ru|promacro.store|botmek.ru|topmacro.ru|ggmacro.ru|aimstar|myhacks.store|interium.ooo|nixware.cc|arayas-cheats.com|x-cheats.com|r8cheats.guru|gamebreaker.ru|cheatside.ru|shadowcheat.pro|h4ck.shop|select-place.ru|oplata.info|Spurdo.me|Chieftain</div>
                 </div>
@@ -429,49 +560,59 @@
         
         <div class="tab-content" id="faq">
             <section class="section">
-                <h2>Часто задаваемые вопросы</h2>
+                <h2><i class="fas fa-question-circle"></i> Часто задаваемые вопросы</h2>
                 
-                <p>Если вы обнаружили ошибку или у вас есть вопрос по поводу работы программы, пожалуйста, напишите мне в Telegram или Discord: @anarchowitz.</p>
+                <div class="alert alert-info">
+                    <i class="fas fa-comment-alt"></i>
+                    <div>
+                        <strong>Нужна помощь?</strong> Если вы обнаружили ошибку или у вас есть вопрос по поводу работы программы, пожалуйста, напишите мне в Telegram или Discord: @anarchowitz.
+                    </div>
+                </div>
 
-                <h3>Как отличить чекер от фейковой версии?</h3>
-                <ol>
-                    <li>Установщик чекера имеет вес "446 КБ". </li>
-                    <li>Открыв свойства чекера (ПКМ по нему), вам нужно будет нажать на вкладку "Подробно". И выйдет актуальная информация о чекере.</li>
-                    <li>Скачивайте чекер только в официальном Discord сервере: <a href="https://yooma.su" target="_blank">yooma.su</a></li>
-                </ol>
+                <div class="faq-qna">
+                    <h4><i class="far fa-question-circle"></i> Как отличить чекер от фейковой версии?</h4>
+                    <ol>
+                        <li>Установщик чекера имеет вес "446 КБ". </li>
+                        <li>Открыв свойства чекера (ПКМ по нему), вам нужно будет нажать на вкладку "Подробно". И выйдет актуальная информация о чекере.</li>
+                        <li>Скачивайте чекер только в официальном Discord сервере: <a href="https://yooma.su" target="_blank">yooma.su</a></li>
+                    </ol>
 
-                <h3>Почему чекер не вирус?</h3>
-                <ol>
-                    <li>VirusTotal сообщает о наличии вируса, но там неизвестный антивирус BKav Pro. Это может означать безопасность файла, так как остальные популярные антивирусы не считают наш чекер вирусом.</li>
-                    <li>Вы можете проверить файл через «Microsoft Virus Intelligence». Он показывает, что вирусов нет, и это правда. Также вы можете самостоятельно загрузить файл на проверку и убедиться в его безопасности.</li>
-                    <li>Наш чекер в режиме бета-теста был скачан пользователями 36000+ раз. С тех пор мы не получили ни одной жалобы на вирусы от пользователей, и мы очень ценим свою репутацию.</li>
-                    <li>Создатель программы не заинтересован в том, чтобы добавлять вирус в свой продукт, так как это может негативно сказаться на сотрудничестве и работе с крупными организациями. Вы можете посмотреть мои другие проекты с открытым исходным кодом, ни в одном из них нет вирусов.</li>
-                </ol>
+                    <h4><i class="far fa-question-circle"></i> Почему чекер не вирус?</h4>
+                    <ol>
+                        <li>VirusTotal сообщает о наличии вируса, но там неизвестный антивирус BKav Pro. Это может означать безопасность файла, так как остальные популярные антивирусы не считают наш чекер вирусом.</li>
+                        <li>Вы можете проверить файл через «Microsoft Virus Intelligence». Он показывает, что вирусов нет, и это правда. Также вы можете самостоятельно загрузить файл на проверку и убедиться в его безопасности.</li>
+                        <li>Наш чекер в режиме бета-теста был скачан пользователями 36000+ раз. С тех пор мы не получили ни одной жалобы на вирусы от пользователей, и мы очень ценим свою репутацию.</li>
+                        <li>Создатель программы не заинтересован в том, чтобы добавлять вирус в свой продукт, так как это может негативно сказаться на сотрудничестве и работе с крупными организациями. Вы можете посмотреть мои другие проекты с открытым исходным кодом, ни в одном из них нет вирусов.</li>
+                    </ol>
 
-                <h3>Что такое YoomaChecker?</h3>
-                <p>YoomaChecker - это инструмент для обнаружения запрещённых программ (читов) в CS2. Он автоматически анализирует систему на наличие читов и использует актуальные методы для комплексной проверки игроков.</p>
-                
-                <h3>Как работает детекция?</h3>
-                <p>Система использует несколько методов обнаружения:</p>
-                <ul>
-                    <li>Поиск файлов с определёнными сигнатурами в именах или содержимом</li>
-                    <li>Игнорирование файлов с мультимедийными расширениями (.mp4, .jpg, .png)</li>
-                    <li>Проверка всех ключевых областей системы, где могут находиться читы</li>
-                </ul>
-                
-                <h3>Могут ли быть ложные срабатывания?</h3>
-                <p>Да, в редких случаях возможны ложные срабатывания, особенно если у вас установлены программы с похожими названиями или вы посещали сайты о читах из любопытства. В данных случаях, администратор должен знать где ложное срабатывание, а где настоящиий чит</p>
-                
-                <h3>Как часто обновляются сигнатуры?</h3>
-                <p>Сигнатуры обновляются регулярно, обычно несколько раз в месяц. Дату последнего обновления вы можете увидеть внизу страницы.</p>
-                
-                <h3>Для обращений и предложений вы можете:</h3>
-                <p>Написать разработчику напрямую в Telegram: <a href="http://t.me/anarchowitz">@anarchowitz</a></p>
+                    <h4><i class="far fa-question-circle"></i> Что такое YoomaChecker?</h4>
+                    <p>YoomaChecker - это инструмент для обнаружения запрещённых программ (читов) в CS2. Он автоматически анализирует систему на наличие читов и использует актуальные методы для комплексной проверки игроков.</p>
+                    
+                    <h4><i class="far fa-question-circle"></i> Как работает детекция?</h4>
+                    <p>Система использует несколько методов обнаружения:</p>
+                    <ul>
+                        <li>Поиск файлов с определёнными сигнатурами в именах или содержимом</li>
+                        <li>Игнорирование файлов с мультимедийными расширениями (.mp4, .jpg, .png)</li>
+                        <li>Проверка всех ключевых областей системы, где могут находиться читы</li>
+                    </ul>
+                    
+                    <h4><i class="far fa-question-circle"></i> Могут ли быть ложные срабатывания?</h4>
+                    <p>Да, в редких случаях возможны ложные срабатывания, особенно если у вас установлены программы с похожими названиями или вы посещали сайты о читах из любопытства. В данных случаях, администратор должен знать где ложное срабатывание, а где настоящиий чит</p>
+                    
+                    <h4><i class="far fa-question-circle"></i> Как часто обновляются сигнатуры?</h4>
+                    <p>Сигнатуры обновляются регулярно, обычно несколько раз в месяц. Дату последнего обновления вы можете увидеть внизу страницы.</p>
+                </div>
             </section>
         </div>
         
         <footer>
+            <div style="margin-bottom: 10px;">
+                <img src="https://yooma.su/assets/svg/Logotype.svg" alt="YoomaChecker Logo" style="height: 30px; opacity: 0.8;">
+            </div>
             YoomaChecker &copy; 2025 | Все права защищены<br>
+            <a href="https://t.me/anarchobio" target="_blank" style="color: var(--primary); margin-top: 5px; display: inline-block;">
+                Разработчик: @anarchobio
+            </a><br>
             Последнее обновление: 18.04.2025
         </footer>
     </div>
@@ -482,10 +623,23 @@
             document.body.classList.toggle('dark-mode');
             const isDark = document.body.classList.contains('dark-mode');
             localStorage.setItem('darkMode', isDark);
+            const icon = themeToggle.querySelector('i');
+            if (isDark) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
         });
+        
         if (localStorage.getItem('darkMode') === 'true') {
             document.body.classList.add('dark-mode');
+            const icon = themeToggle.querySelector('i');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
         }
+        
         const tabs = document.querySelectorAll('.tab');
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
@@ -496,19 +650,26 @@
                 document.getElementById(tabId).classList.add('active');
             });
         });
-        
+
         document.querySelectorAll('.copy-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const targetId = this.getAttribute('data-target');
                 const textToCopy = document.getElementById(targetId).textContent;
                 
                 navigator.clipboard.writeText(textToCopy).then(() => {
-                    const originalText = this.innerHTML;
-                    this.innerHTML = '<i class="fas fa-check"></i> Скопировано!';
-                    this.classList.add('copied');
+                    const originalIcon = this.querySelector('i').className;
+                    const originalText = this.querySelector('span').textContent;
+                    
+                    this.querySelector('i').className = 'fas fa-check';
+                    this.querySelector('span').textContent = 'Скопировано!';
+                    this.style.backgroundColor = 'rgba(0, 184, 148, 0.2)';
+                    this.style.color = 'var(--success)';
+                    
                     setTimeout(() => {
-                        this.innerHTML = originalText;
-                        this.classList.remove('copied');
+                        this.querySelector('i').className = originalIcon;
+                        this.querySelector('span').textContent = originalText;
+                        this.style.backgroundColor = 'rgba(108, 92, 231, 0.1)';
+                        this.style.color = 'var(--primary)';
                     }, 2000);
                 }).catch(err => {
                     console.error('Ошибка при копировании: ', err);
