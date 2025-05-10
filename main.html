@@ -141,22 +141,34 @@
         
         .copy-btn {
             position: absolute;
-            top: 0;
-            right: 0;
-            z-index: 10;
-            background: var(--primary);
-            color: white !important;
-            padding: 8px 15px;
-            border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none !important;
+            outline: none !important;
+            color: var(--primary);
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+            font-size: 14px;
+            z-index: 2;
+            box-shadow: none !important;
         }
         
         .copy-btn:hover {
-            background: var(--secondary);
+            color: var(--secondary);
         }
         
         .copy-btn .fa-copy {
-            color: inherit !important;
+            font-size: 16px;
+            margin-top: 2px;
+        }
+        
+        .copy-btn span {
+            line-height: 1.2;
+            padding-top: 1px;
         }
         
         .program-info {
@@ -377,7 +389,8 @@
                 <h3>Сигнатуры (case-insensitive):</h3>
                 <div class="signatures-container">
                     <button class="copy-btn" data-target="everything-sigs">
-                        <i class="far fa-copy"></i> Копировать
+                        <i class="far fa-copy"></i>
+                        <span>Скопировать</span>
                     </button>
                     <div class="signatures" id="everything-sigs">XONE|ErScript|ExLoader|Spurdo|Chieftain|INTERIUM|midnight|xone|interium|espd2x|avira|exloader|wallhack|skinchanger|extrimhack|primordial|skeet|gamesense|neverlose|injector|nixware|autohotkey|hack|cheat|чит|Aimware|crack|Vredux|NeverKernel|MASON|predator|Aquila|Luno|Fecurity|Aimstar|TKazer|NAIM|Pellix|PussyCat|Macros|AXIOS|Syncware|NOVA|OneMacro|SoftHub|MVPLoader|Detorus|VRedux|ProExt|Sapphire|InterWebz|Spirthack|.amc|imgui.ini|HAXCS|Plaguecheat|vapehook|en1gma|enigma|smurfwrecker|Iniuia|memesense|Yeahnot|LeagueMode|Legendware|EGHack|HAUNTEDPROJECT|externalcrack|RAGER9|RAGER8|.ahk|WinX|PhoenixHack|OBR|OneByteRadar|EZinjector|Reborn|OneByteWall*Hack|Osiris|Multihack|Breakthrough|RHcheats|Aurora|SpirtHack|Fatality|OneTap|ev0lve|Bhop|BunnyHop|Avira|SharkHack|sharkhack</div>
                 </div>
