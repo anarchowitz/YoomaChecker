@@ -8,41 +8,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #6c5ce7;
-            --primary-dark: #5649c0;
-            --primary-light: #a29bfe;
-            --secondary: #00cec9;
-            --dark: #2d3436;
-            --light: #f5f6fa;
-            --danger: #ff7675;
-            --warning: #fdcb6e;
-            --success: #55efc4;
-            --info: #74b9ff;
-            
-            --bg-color: #f5f6fa;
-            --section-bg: white;
-            --text-color: #2d3436;
-            --text-secondary: #636e72;
-            --border-color: #dfe6e9;
-            --shadow-color: rgba(0, 0, 0, 0.1);
-        }
-        
-        .dark-mode {
             --primary: #8476e7;
             --primary-dark: #6c5ce7;
             --primary-light: #9c91f0;
             --secondary: #00d8d6;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --danger: #ff6b6b;
+            --warning: #ffeaa7;
+            --success: #58f0c0;
+            --info: #7fb7ff;
+            
             --bg-color: #121218;
             --section-bg: #1e1e2e;
             --text-color: #e2e2e9;
             --text-secondary: #b2b2ba;
             --border-color: #2e2e3e;
             --shadow-color: rgba(0, 0, 0, 0.3);
-            
-            --danger: #ff6b6b;
-            --warning: #ffeaa7;
-            --success: #58f0c0;
-            --info: #7fb7ff;
         }
         
         * {
@@ -90,12 +72,8 @@
             width: 200%;
             height: 200%;
             background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        
-        .dark-mode header::before {
             opacity: 0.3;
+            transition: opacity 0.5s ease;
         }
         
         .header-logo {
@@ -622,7 +600,7 @@
     </style>
 </head>
 <body>
-    <button class="theme-toggle" id="themeToggle">
+    <button class="theme-toggle" id="themeToggle" style="display: none;">
         <i class="fas fa-moon"></i>
         <span>Тема</span>
     </button>
@@ -868,32 +846,6 @@
     </div>
     
     <script>
-        const themeToggle = document.getElementById('themeToggle');
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            const isDark = document.body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDark);
-            const icon = themeToggle.querySelector('i');
-            if (isDark) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-                themeToggle.querySelector('span').textContent = 'Светлая';
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-                themeToggle.querySelector('span').textContent = 'Тёмная';
-            }
-        });
-        
-        if (localStorage.getItem('darkMode') === 'true' || 
-            (localStorage.getItem('darkMode') === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.body.classList.add('dark-mode');
-            const icon = themeToggle.querySelector('i');
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-            themeToggle.querySelector('span').textContent = 'Светлая';
-        }
-        
         const tabs = document.querySelectorAll('.tab');
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
@@ -985,6 +937,8 @@
     
         window.addEventListener('load', activateTabFromHash);
         window.addEventListener('hashchange', activateTabFromHash);
+
+        document.body.classList.add('dark-mode');
     </script>
 </body>
 </html>
