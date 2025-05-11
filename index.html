@@ -522,6 +522,16 @@
         .file-info-item:last-child {
             border-bottom: none;
         }
+
+        .file-info-item span:last-child {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        #downloadCounter {
+            font-family: monospace;
+            letter-spacing: 1px;
+        }
         
         .verification-badge {
             display: inline-flex;
@@ -802,6 +812,10 @@
                             <span>Поддержка:</span>
                             <span>Windows 10/11</span>
                         </div>
+                        <div class="file-info-item">
+                            <span>Скачано раз:</span>
+                            <span id="downloadCounter">36,000</span>
+                        </div>
                     </div>
                     
                     <a href="#" class="download-btn" id="downloadBtn">
@@ -841,7 +855,6 @@
                 <a href="https://github.com/anarchowitz" target="_blank" style="color: var(--text-secondary); margin: 0 5px;"><i class="fab fa-github"></i></a>
                 <a href="https://discord.gg/yooma" target="_blank" style="color: var(--text-secondary); margin: 0 5px;"><i class="fab fa-discord"></i></a>
             </div>
-            Последнее обновление: 10.05.2025
         </footer>
     </div>
     
@@ -880,20 +893,28 @@
             });
         });
         
+        let downloadCount = parseInt(localStorage.getItem('downloadCount')) || 36000;
+        document.getElementById('downloadCounter').textContent = downloadCount.toLocaleString();
+
         document.getElementById('downloadBtn').addEventListener('click', function(e) {
             e.preventDefault();
             const btn = this;
+            downloadCount++;
+            localStorage.setItem('downloadCount', downloadCount);
+            document.getElementById('downloadCounter').textContent = downloadCount.toLocaleString();
             const originalHtml = btn.innerHTML;
             const downloadLink = 'https://github.com/anarchowitz/YoomaChecker/raw/refs/heads/main/YoomaChecker%20Installer.exe';
+            
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Начинаем скачивание...';
-            btn.style.background = 'linear-gradient(135deg, var(--info), var(--primary))';
             btn.disabled = true;
+            
             const a = document.createElement('a');
             a.href = downloadLink;
             a.download = 'YoomaInstaller.exe';
             a.style.display = 'none';
             document.body.appendChild(a);
             a.click();
+            
             setTimeout(() => {
                 document.body.removeChild(a);
                 btn.innerHTML = '<i class="fas fa-check"></i> Скачивание начато!';
@@ -906,6 +927,7 @@
                 }, 3000);
             }, 100);
         });
+
 
         document.querySelectorAll('.section, .download-card, .program-info').forEach(el => {
             el.addEventListener('mousemove', (e) => {
