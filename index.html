@@ -31,7 +31,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
         }
         
         body {
@@ -157,6 +157,35 @@
             position: absolute;
             left: 10px;
             transition: all 0.2s ease;
+        }
+
+        .faq-item {
+            margin: 15px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 15px;
+            background: var(--section-bg);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 15px;
+            background: var(--bg-color);
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 15px;
         }
         
         .forbidden li:before {
@@ -893,7 +922,7 @@
             });
         });
         
-        let downloadCount = parseInt(localStorage.getItem('downloadCount')) || 36793;
+        let downloadCount = parseInt(localStorage.getItem('downloadCount')) || 36792;
         document.getElementById('downloadCounter').textContent = downloadCount.toLocaleString();
 
         document.getElementById('downloadBtn').addEventListener('click', function(e) {
