@@ -574,6 +574,53 @@
             margin-top: 15px;
         }
         
+        .content-nav {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .content-btn {
+            background: rgba(108, 92, 231, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .content-btn:hover {
+            background: rgba(108, 92, 231, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .content-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+        
+        .content-section {
+            display: none;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        .guide-step {
+            background: rgba(108, 92, 231, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
         @media (max-width: 768px) {
             .theme-toggle {
                 top: 15px;
@@ -613,6 +660,15 @@
             .download-card {
                 padding: 20px;
             }
+            
+            .content-nav {
+                gap: 10px;
+            }
+            
+            .content-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
         }
         
         @keyframes fadeIn {
@@ -650,14 +706,17 @@
         </header>
 
         <div class="tabs">
+            <button class="tab" data-tab="download" id="tab-download">
+                <i class="fas fa-download"></i> Скачать
+            </button>
             <button class="tab active" data-tab="signatures" id="tab-signatures">
                 <i class="fas fa-shield-alt"></i> Сигнатуры
             </button>
             <button class="tab" data-tab="faq" id="tab-faq">
                 <i class="fas fa-question-circle"></i> FAQ
             </button>
-            <button class="tab" data-tab="download" id="tab-download">
-                <i class="fas fa-download"></i> Скачать
+            <button class="tab" data-tab="guide" id="tab-guide">
+                <i class="fas fa-book"></i> Руководство
             </button>
         </div>
         
@@ -756,59 +815,11 @@
                         <i class="far fa-copy"></i>
                         <span>Копировать</span>
                     </button>
-                    <div class="signatures" id="browser-sigs">doomxtf.com|axios-macro.com|midnight.im|xone.fun|blast.hk|yougame.biz|jestkii|wh-satano|cheatcsgo|interium|r8cheats|ezcheats|exloader|cs-elect.ru|extrimhack|neverlose.cc|gamesense|legendware|nixware|phoenix-hack|rf-cheats|anyx.gg|hackvshack.net|ezyhack|unknowncheats|cheater.ninja|insanitycheats.com|cheater.fun|100cheats.ru|undetek.com|cs-elect.ru|cheater.world|zelenka.guru/tags/cs2-cheat|procheats|hells-hack.com|clickhack.ru|procheat.pro|cheatermad.com|420cheats.com|cs2-cheat|wh-satano.ru|up-game.pro|millex.xyz|boohack.ru|procheat.pro|elitehacks.ru|cheatcsgo.ru|box-cheat.ru|novamacro|predator.systems|mvploader|securecheats|darkaim|invision.gg|elitepvpers.com|privatecheatz|cosmocheats|skycheats.com|capefactory.io|rockpapershotgun.com|en1gma.tech|lunocs2.ru|abyss.gg|ezcs.ru|kitchenhack.ru|ezyhack.ru|extrimhack.ru|dhjcheats.com|aimcop.ru|novamacro.xyz|promacro.ru|promacro.store|botmek.ru|topmacro.ru|ggmacro.ru|aimstar|myhacks.store|interium.ooo|nixware.cc|arayas-cheats.com|x-cheats.com|r8cheats.guru|gamebreaker.ru|cheatside.ru|shadowcheat.pro|h4ck.shop|select-place.ru|oplata.info|Spurdo.me|Chieftain</div>
+                    <div class="signatures" id="browser-sigs">doomxtf.com|axios-macro.com|midnight.im|xone.fun|blast.hk|yougame.biz|jestkii|wh-satano|cheatcsgo|interium|r8cheats|ezcheats|exloader|cs-elect.ru|extrimhack|neverlose.cc|gamesense|legendware|nixware|phoenix-hack|rf-cheats|anyx.gg|hackvshack.net|ezyhack|unknowncheats|cheater.ninja|insanitycheats.com|cheater.fun|100cheats.ru|undetek.com|cs-elect.ru|cheater.world|zelenka.guru/tags/cs2-cheat|procheats|hells-hack.com|clickhack.ru|procheat.pro|cheatermad.com|420cheats.com|cs2-cheat|wh-satano.ru|up-game.pro|millex.xyz|boohack.ru|procheat.pro|elitehacks.ru|cheatcsgo.ru|box-cheat.ru|novamacro|predator.systems|mvploader|securecheats|darkaim|invision.gg|elitepvpers.com|privatecheatz|cosmocheats|skycheats.com|rockpapershotgun.com|en1gma.tech|lunocs2.ru|abyss.gg|ezcs.ru|kitchenhack.ru|ezyhack.ru|extrimhack.ru|dhjcheats.com|aimcop.ru|novamacro.xyz|promacro.ru|promacro.store|botmek.ru|topmacro.ru|ggmacro.ru|aimstar|myhacks.store|interium.ooo|nixware.cc|arayas-cheats.com|x-cheats.com|r8cheats.guru|gamebreaker.ru|cheatside.ru|shadowcheat.pro|h4ck.shop|select-place.ru|oplata.info|Spurdo.me|Chieftain</div>
                 </div>
             </section>
         </div>
-        
-        <div class="tab-content" id="faq">
-            <section class="section">
-                <div class="glow-effect"></div>
-                <h2><i class="fas fa-question-circle"></i> Часто задаваемые вопросы</h2>
-                
-                <div class="alert alert-info">
-                    <i class="fas fa-comment-alt"></i>
-                    <div>
-                        <strong>Нужна помощь?</strong> Если вы обнаружили ошибку или у вас есть вопрос по поводу работы программы, пожалуйста, напишите мне в Telegram или Discord: @anarchowitz.
-                    </div>
-                </div>
 
-                <div class="faq-qna">
-                    <h4><i class="far fa-question-circle"></i> Как отличить чекер от фейковой версии?</h4>
-                    <ol>
-                        <li>Установщик чекера имеет вес "446 КБ". </li>
-                        <li>Открыв свойства чекера (ПКМ по нему), вам нужно будет нажать на вкладку "Подробно". И выйдет актуальная информация о чекере.</li>
-                        <li>Скачивайте чекер только в официальном Discord сервере: <a href="https://yooma.su" target="_blank">yooma.su</a></li>
-                    </ol>
-
-                    <h4><i class="far fa-question-circle"></i> Почему чекер не вирус?</h4>
-                    <ol>
-                        <li>VirusTotal сообщает о наличии вируса, но там неизвестный антивирус BKav Pro. Это может означать безопасность файла, так как остальные популярные антивирусы не считают наш чекер вирусом.</li>
-                        <li>Вы можете проверить файл через «Microsoft Virus Intelligence». Он показывает, что вирусов нет, и это правда. Также вы можете самостоятельно загрузить файл на проверку и убедиться в его безопасности.</li>
-                        <li>Наш чекер в режиме бета-теста был скачан пользователями 36000+ раз. С тех пор мы не получили ни одной жалобы на вирусы от пользователей, и мы очень ценим свою репутацию.</li>
-                        <li>Создатель программы не заинтересован в том, чтобы добавлять вирус в свой продукт, так как это может негативно сказаться на сотрудничестве и работе с крупными организациями. Вы можете посмотреть мои другие проекты с открытым исходным кодом, ни в одном из них нет вирусов.</li>
-                    </ol>
-
-                    <h4><i class="far fa-question-circle"></i> Что такое YoomaChecker?</h4>
-                    <p>YoomaChecker - это инструмент для обнаружения запрещённых программ (читов) в CS2. Он автоматически анализирует систему на наличие читов и использует актуальные методы для комплексной проверки игроков.</p>
-                    
-                    <h4><i class="far fa-question-circle"></i> Как работает детекция?</h4>
-                    <p>Система использует несколько методов обнаружения:</p>
-                    <ul>
-                        <li>Поиск файлов с определёнными сигнатурами в именах или содержимом</li>
-                        <li>Игнорирование файлов с мультимедийными расширениями (.mp4, .jpg, .png)</li>
-                        <li>Проверка всех ключевых областей системы, где могут находиться читы</li>
-                    </ul>
-                    
-                    <h4><i class="far fa-question-circle"></i> Могут ли быть ложные срабатывания?</h4>
-                    <p>Да, в редких случаях возможны ложные срабатывания, особенно если у вас установлены программы с похожими названиями или вы посещали сайты о читах из любопытства. В данных случаях, администратор должен знать где ложное срабатывание, а где настоящиий чит</p>
-                    
-                    <h4><i class="far fa-question-circle"></i> Как часто обновляются сигнатуры?</h4>
-                    <p>Сигнатуры обновляются регулярно, обычно несколько раз в месяц. Дату последнего обновления вы можете увидеть внизу страницы.</p>
-                </div>
-            </section>
-        </div>
-        
         <div class="tab-content" id="download">
             <section class="section">
                 <div class="glow-effect"></div>
@@ -872,6 +883,209 @@
             </section>
         </div>
         
+        <div class="tab-content" id="faq">
+            <section class="section">
+                <div class="glow-effect"></div>
+                <h2><i class="fas fa-question-circle"></i> Часто задаваемые вопросы</h2>
+                
+                <div class="alert alert-info">
+                    <i class="fas fa-comment-alt"></i>
+                    <div>
+                        <strong>Нужна помощь?</strong> Если вы обнаружили ошибку или у вас есть вопрос по поводу работы программы, пожалуйста, напишите мне в Telegram или Discord: @anarchowitz.
+                    </div>
+                </div>
+
+                <div class="faq-qna">
+                    <h4><i class="far fa-question-circle"></i> Как отличить чекер от фейковой версии?</h4>
+                    <ol>
+                        <li>Установщик чекера имеет вес "446 КБ". </li>
+                        <li>Открыв свойства чекера (ПКМ по нему), вам нужно будет нажать на вкладку "Подробно". И выйдет актуальная информация о чекере.</li>
+                        <li>Скачивайте чекер только в официальном Discord сервере: <a href="https://yooma.su" target="_blank">yooma.su</a></li>
+                    </ol>
+
+                    <h4><i class="far fa-question-circle"></i> Почему чекер не вирус?</h4>
+                    <ol>
+                        <li>VirusTotal сообщает о наличии вируса, но там неизвестный антивирус BKav Pro. Это может означать безопасность файла, так как остальные популярные антивирусы не считают наш чекер вирусом.</li>
+                        <li>Вы можете проверить файл через «Microsoft Virus Intelligence». Он показывает, что вирусов нет, и это правда. Также вы можете самостоятельно загрузить файл на проверку и убедиться в его безопасности.</li>
+                        <li>Наш чекер в режиме бета-теста был скачан пользователями 36000+ раз. С тех пор мы не получили ни одной жалобы на вирусы от пользователей, и мы очень ценим свою репутацию.</li>
+                        <li>Создатель программы не заинтересован в том, чтобы добавлять вирус в свой продукт, так как это может негативно сказаться на сотрудничестве и работе с крупными организациями. Вы можете посмотреть мои другие проекты с открытым исходным кодом, ни в одном из них нет вирусов.</li>
+                    </ol>
+
+                    <h4><i class="far fa-question-circle"></i> Что такое YoomaChecker?</h4>
+                    <p>YoomaChecker - это инструмент для обнаружения запрещённых программ (читов) в CS2. Он автоматически анализирует систему на наличие читов и использует актуальные методы для комплексной проверки игроков.</p>
+                    
+                    <h4><i class="far fa-question-circle"></i> Как работает детекция?</h4>
+                    <p>Система использует несколько методов обнаружения:</p>
+                    <ul>
+                        <li>Поиск файлов с определёнными сигнатурами в именах или содержимом</li>
+                        <li>Игнорирование файлов с мультимедийными расширениями (.mp4, .jpg, .png)</li>
+                        <li>Проверка всех ключевых областей системы, где могут находиться читы</li>
+                    </ul>
+                    
+                    <h4><i class="far fa-question-circle"></i> Могут ли быть ложные срабатывания?</h4>
+                    <p>Да, в редких случаях возможны ложные срабатывания, особенно если у вас установлены программы с похожими названиями или вы посещали сайты о читах из любопытства. В данных случаях, администратор должен знать где ложное срабатывание, а где настоящиий чит</p>
+                    
+                    <h4><i class="far fa-question-circle"></i> Как часто обновляются сигнатуры?</h4>
+                    <p>Сигнатуры обновляются регулярно, обычно несколько раз в месяц. Дату последнего обновления вы можете увидеть внизу страницы.</p>
+                </div>
+            </section>
+        </div>
+
+        <div class="tab-content" id="guide">
+            <section class="section">
+                <div class="glow-effect"></div>
+                <h2><i class="fas fa-book-open"></i> Руководство по проверке на читы</h2>
+                
+                <div class="content-nav">
+                    <button class="content-btn active" data-content="manual-check">
+                        <i class="fas fa-user-shield"></i> Внечекера
+                    </button>
+                    <button class="content-btn" data-content="checker-guide">
+                        <i class="fas fa-check-circle"></i> Чекер
+                    </button>
+                    <button class="content-btn" data-content="programs-guide">
+                        <i class="fas fa-laptop-code"></i> Программы
+                    </button>
+                </div>
+                
+                <div class="content-section active" id="manual-check">
+                    <h3><i class="fas fa-user-secret"></i> Проверка без чекера</h3>
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <strong>Ручная проверка</strong> используется, когда чекер недоступен или нужно проверить игрока вручную.
+                        </div>
+                    </div>
+                    
+                    <h4>1. Проверка истории браузера</h4>
+                    <div class="guide-step">
+                        <ol>
+                            <li>Попросите игрока открыть историю браузера (Ctrl+H в большинстве браузеров)</li>
+                            <li>Проверьте наличие подозрительных сайтов (список в разделе "Сигнатуры")</li>
+                            <li>Обратите внимание на частые посещения сайтов с читами, проверьте наличие подписки на читы у пользователя.</li>
+                        </ol>
+                    </div>
+                    
+                    <h4>2. Проверка файлов на компьютере</h4>
+                    <div class="guide-step">
+                        <ol>
+                            <li>Откройте Проводник (Win+E)</li>
+                            <li>В поиске введите: *.exe, *.dll, *.ahk</li>
+                            <li>Проверьте названия файлов на соответствие запрещенным сигнатурам</li>
+                            <li>Особое внимание уделите папкам Downloads, Desktop, Documents, Корзине</li>
+                        </ol>
+                    </div>
+                    
+                    <h4>3. Проверка панели управления NVIDIA</h4>
+                    <div class="guide-step">
+                        <ol>
+                            <li>Откройте Панель управления NVIDIA (ПКМ по рабочему столу)</li>
+                            <li>Перейдите во вкладку "Управление параметрами 3D"</li>
+                            <li>В данной вкладке нажмите сверху - "Программные настройки"</li>
+                            <li>Нажмите на кнопку - "Добавить". Листайте и найдите подозрительные процессы</li>
+                        </ol>
+                    </div>
+
+                    <h4>4. Проверка использования данных интернета</h4>
+                    <div class="guide-step">
+                        <ol>
+                            <li>Откройте параметры системы (Win + I)</li>
+                            <li>Нажмите на "Сеть и Интернет"</li>
+                            <li>Выберите сверху - "Использование данных"</li>
+                            <li>Прокручивая, проверьте названия файлов на соответствие запрещенным сигнатурам</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="content-section" id="checker-guide">
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <strong>Внимание!</strong> Отказ от прохождения проверки любым из предложенных способов 
+                            влечёт блокировку аккаунта на 90 дней!
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <strong>Сроки блокировок:</strong>
+                            <p>Использование читов - 90 дней</p>
+                            <p>Отказ от проверки - 90 дней</p>
+                            <p>Обход блокировки - бан на первоначальный срок блокировки</p>
+                        </div>
+                    </div>
+
+                    <h3><i class="fas fa-download"></i> Шаг 1: Установка программ для проверки</h3>
+                    <ul>
+                        <li>Вариант A: Скачать официальный YoomaChecker с сайта</li>
+                        <li>Вариант B: Скачать архив отдельных программ для проверки (<a href="https://files.yooma.su/Проверка_yooma.zip" target="_blank">программы-отдельно.zip</a>)</li>
+                    </ul>
+
+                    <h3><i class="fas fa-search"></i> Шаг 2: Проверка файловой системы</h3>
+                    <div class="guide-step">
+                        <ol>
+                            <li>Откройте YoomaChecker</li>
+                            <li>Перейдите во вкладку "Проверка файлов"</li>
+                            <li>Нажмите "Начать проверку"</li>
+                            <li>Дождитесь завершения сканирования (2-5 минут)</li>
+                        </ol>
+                    </div>
+
+                    <h3><i class="fas fa-user-shield"></i> Шаг 3: Проверка Steam аккаунтов</h3>
+                    <div class="guide-step">
+                        <ol>
+                            <li>Перейдите во вкладку "Проверка аккаунтов"</li>
+                            <li>Найдите столбец "Блокировка на сайте"</li>
+                            <li>При наличии активного бана на другом аккаунте: Блокировка всех аккаунтов игрока по причине "Обход блокировки" на первоначальный срок активной блокировки</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="content-section" id="programs-guide">
+                    
+                    <!-- <div class="program-info">
+                        <div class="program-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div>
+                            <span class="program-name">Everything</span>
+                            <p>Быстрый поиск файлов по системе с поддержкой регулярных выражений</p>
+                        </div>
+                    </div>
+                    
+                    <div class="program-info">
+                        <div class="program-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div>
+                            <span class="program-name">System Informer</span>
+                            <p>Мониторинг процессов и служб с возможностью проверки подписи файлов</p>
+                        </div>
+                    </div>
+                    
+                    <div class="program-info">
+                        <div class="program-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div>
+                            <span class="program-name">Wireshark</span>
+                            <p>Анализ сетевого трафика для выявления подозрительных соединений</p>
+                        </div>
+                    </div>
+                    
+                    <h3><i class="fas fa-file-download"></i> Где скачать</h3>
+                    <div class="guide-step">
+                        <ol>
+                            <li><a href="https://www.voidtools.com/" target="_blank">Everything</a> - официальный сайт</li>
+                            <li><a href="https://systeminformer.sourceforge.io/" target="_blank">System Informer</a> - официальный сайт</li>
+                            <li><a href="https://www.wireshark.org/" target="_blank">Wireshark</a> - официальный сайт</li>
+                        </ol>
+                    </div>
+                </div> -->
+            </section>
+        </div>
+        
         <footer>
             <div style="margin-bottom: 10px;">
                 <img src="https://yooma.su/assets/svg/Logotype.svg" alt="YoomaChecker Logo" style="height: 30px; opacity: 0.8;">
@@ -922,7 +1136,7 @@
             });
         });
         
-        let downloadCount = parseInt(localStorage.getItem('downloadCount')) || 36792;
+        let downloadCount = parseInt(localStorage.getItem('downloadCount')) || 36000;
         document.getElementById('downloadCounter').textContent = downloadCount.toLocaleString();
 
         document.getElementById('downloadBtn').addEventListener('click', function(e) {
@@ -957,7 +1171,6 @@
             }, 100);
         });
 
-
         document.querySelectorAll('.section, .download-card, .program-info').forEach(el => {
             el.addEventListener('mousemove', (e) => {
                 const rect = el.getBoundingClientRect();
@@ -990,6 +1203,20 @@
         window.addEventListener('hashchange', activateTabFromHash);
 
         document.body.classList.add('dark-mode');
+
+        // Content navigation
+        const contentBtns = document.querySelectorAll('.content-btn');
+        contentBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const contentId = this.getAttribute('data-content');
+                
+                document.querySelectorAll('.content-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+                
+                this.classList.add('active');
+                document.getElementById(contentId).classList.add('active');
+            });
+        });
     </script>
 </body>
 </html>
